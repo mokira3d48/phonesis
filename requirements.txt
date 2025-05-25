@@ -1,0 +1,4 @@
+pytest==8.2
+setuptools>=42
+wheel
+autopep8
