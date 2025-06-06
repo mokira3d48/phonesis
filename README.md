@@ -19,7 +19,6 @@ and memory usage. It also offers the ability to continually update its codex
 to support other languages.
 
 #### Table of Contents
-- [Description](#description)
 - [Installation](#installation)
   - [For Linux](#for-linux)
   - [For Windows](#for-windows)

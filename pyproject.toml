@@ -3,12 +3,12 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "scilab"
+name = "phonesis"
 version = "0.1.0"
-description = " Multi-language tokenization algorithm using the syllables of word pronunciation in each language."
+description = "Multilingual tokenization algorithm using the pronunciation phonemes of words. It adjusts its tokenization codex directly from words in the language dictionary, rather than from large text corpora."
 readme = "README.md"
 authors = [
-    { name = "Dr Mokira", email = "dr.mokira@gmail.com" },
+    { name = "Doctor Mokira", email = "dr.mokira@gmail.com" },
 ]
 license = { file = "LICENSE" }
 classifiers = [
@@ -16,17 +16,19 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-keywords = ["nlp", "sub-words-tokenization"]
+keywords = [
+    "nlp", "sub-words-tokenization", "phonetic-conversion",
+    "phonetic-languages", "sub-words-tokenization"
+]
 dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/mokira3d48/scilab"
+"Homepage" = "https://github.com/mokira3d48/phonesis"
 #"Bug Tracker" = "https://github.com/your-username/my-python-package/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
-#[project.scripts]
-#mycmd = "package_name.__main__:main"
-
+[project.scripts]
+phonesis = "phonesis.__main__:main"
