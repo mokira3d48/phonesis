@@ -9,7 +9,7 @@ class FileHandler:
     :param model: The instance of Tokenizer model
     :param file_path: The path to file where we want to save tokenizer data
 
-    :type model: scilab.tokenizer.Tokenizer
+    :type model: phonesis.tokenizer.Tokenizer
     :type file_path: `str`
     """
     def __init__(self, model, file_path):
@@ -39,7 +39,7 @@ class FileHandler:
         """
         Method to load data of tokenizer model from file_path specified
 
-        :rtype: scilab.tokenizer.Tokenizer
+        :rtype: phonesis.tokenizer.Tokenizer
         """
         if not os.path.isfile(self.file_path):
             raise FileNotFoundError(f"No such model file at {self.file_path}")
