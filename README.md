@@ -156,6 +156,16 @@ INFO: ind: [8721, 3652, 19677, 0]
 
 ```
 
+- To train a new phonesis codex to tokenize a new language, run the following
+command line with arguments:
+
+```bash
+phonesis-train -a samples/fr/alphabet.json -d samples/fr/full_dico.txt
+```
+
+1. An example of alphabet file format is available here: `samples/fr/alphabet.json`
+2. An example of dictionary file format is available here: `samples/fr/full_dico.txt`
+
 ## Features
 
 
