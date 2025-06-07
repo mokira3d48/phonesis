@@ -3,12 +3,11 @@ import sys
 import json
 import logging
 import logging.config
+from argparse import ArgumentParser
 
 from phonesis.train import Trainer
 from phonesis.impl import Parser, Tokenizer
 from phonesis.constants import DEFAULT_CONS, DEFAULT_VOWS
-
-
 
 logging.config.fileConfig('logging.conf')
 logger = logging.getLogger('phonesis')
@@ -65,38 +64,55 @@ def read_text_file(file_path):
 
 
 def train():
-    """Training function"""
-    argv = sys.argv[1:]
-    if len(argv) <= 0:
+    """
+    Training function
+    """
+    parser = ArgumentParser(prog="Phonesis model training")
+    parser.add_argument(
+        "--alphabet", type=str,
+        help="Provide a JSON file that provides the alphabet"
+    )
+    parser.add_argument(
+        '-d', "--dictionary", type=str,
+        help=(
+            "Provide the dictionary as text file that contents"
+            " the words of the language."
+        )
+    )
+    parser.add_argument(
+        '-o', '--output', type=str, default="output.json",
+        help="Provide the output file path in which we will save the tokens."
+    )
+    args = parser.parse_args()
+    alphabet_file = args.alphabet
+    dictionary_file = args.dictionary
+    output_file = args.output
+
+    if not alphabet_file:
         print("ERRO: No alphabet file provided.")
         print("INFO: Please, provide alphabet json file "
               "separated in consonants and vowels.")
         print("INFO: Eg: {\"consonants\":[..], \"vowels\":[]}")
-        sys.exit(0)
-    alphabet_fp = argv[0]
-    if len(argv) <= 1:
-        print("ERRO: No vocab of language provided.")
+        exit(0)
+    if not dictionary_file:
+        print("ERRO: No dictionary of language provided.")
         print("INFO: Please, provide a text (.txt) file "
               "that contains the words list of the language.")
-        sys.exit(0)
-    vocab_fp = argv[1]
-    output_fp = 'sybok_model.json'
-    if len(argv) > 2:
-        output_fp = argv[2]
+        exit(0)
 
-    returned = retrieve_alphabet(alphabet_fp)
+    returned = retrieve_alphabet(alphabet_file)
     if not returned:
         print("The content formatting of alphabet file is not supported.")
-        sys.exit(0)
+        exit(1)
     consonants = returned[0]
     vowels = returned[1]
-    dataset = read_text_file(vocab_fp)
+    dataset = read_text_file(dictionary_file)
 
     # Running training process:
     trainer = Trainer(dataset, consonants, vowels)
     n_vocab = trainer.run()
     model = trainer.get_model()
-    model.save(output_fp)
+    model.save(output_file)
     print("SUCC: Training done successfully!")
     print(f"INFO: The size of vocab: {n_vocab}")
 

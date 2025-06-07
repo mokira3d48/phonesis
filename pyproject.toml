@@ -31,4 +31,4 @@ dependencies = [
 where = ["src"]
 
 [project.scripts]
-phonesis = "phonesis.main:main"
+phonesis-train = "phonesis.main:train"
