@@ -32,3 +32,4 @@ where = ["src"]
 
 [project.scripts]
 phonesis-train = "phonesis.main:train"
+phonesis-inference = "phonesis.main:inference"

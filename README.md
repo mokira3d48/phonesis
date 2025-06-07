@@ -91,6 +91,70 @@ to run `src\phonesis\__main__.py` and start the application.
 
 ## Usage
 
+- Test command line for french codex:
+
+```bash
+phonesis-inference -m samples/fr_phsis_built.json
+```
+
+```
+vocab size: 8691
+>_ Verbalement
+INFO: seq: ['ver', 'ba', 'le', 'men', 't', '#']
+INFO: ind: [7768, 52, 3655, 4108, 6960, 0]
+>_ Function
+INFO: seq: ['fun', 'ction', '#']
+INFO: ind: [2241, 1213, 0]
+>_ Arnold
+INFO: seq: ['ar', 'nol', 'd', '#']
+INFO: ind: [30, 4491, 1373, 0]
+>_ Boxes
+INFO: seq: ['bo', 'xes', '#']
+INFO: ind: [228, 8008, 0]
+>_ Machine Learning
+Traceback (most recent call last):
+  File "/home/mokira3d48/Documents/repositories/phonesis/.venv/bin/phonesis-inference", line 8, in <module>
+    sys.exit(inference())
+  File "/home/mokira3d48/Documents/repositories/phonesis/src/phonesis/main.py", line 124, in inference
+    res = model([text])
+  File "/home/mokira3d48/Documents/repositories/phonesis/src/phonesis/impl.py", line 200, in __call__
+    return self.forward(inp)
+  File "/home/mokira3d48/Documents/repositories/phonesis/src/phonesis/impl.py", line 181, in forward
+    tok = self.encode(s)
+  File "/home/mokira3d48/Documents/repositories/phonesis/src/phonesis/impl.py", line 166, in encode
+    index = self.vocab.index(token)
+ValueError: 'lear' is not in list
+```
+
+Some english is not supported with french codex of phonesis.
+So we will try with english codex.
+
+- Test command line for english codex:
+
+```bash
+phonesis-inference -m samples/en_phsis_built.json
+```
+
+```
+vocab size: 30074
+>_ Computer
+INFO: seq: ['com', 'pu', 'ter', '#']
+INFO: ind: [2676, 19091, 24297, 0]
+>_ Learning
+INFO: seq: ['lear', 'nin', 'g', '#']
+INFO: ind: [13621, 16869, 6935, 0]
+>_ Entertenment
+INFO: seq: ['en', 'ter', 'ten', 'men', 't', '#']
+INFO: ind: [5498, 24297, 24271, 15604, 23864, 0]
+>_ fonctionnement
+INFO: seq: ['fon', 'ction', 'ne', 'men', 't', '#']
+INFO: ind: [6365, 3023, 16607, 15604, 23864, 0]
+>_ Hardcore
+INFO: seq: ['har', 'dco', 're', '#']
+INFO: ind: [8721, 3652, 19677, 0]
+>_
+
+```
 
 ## Features
 

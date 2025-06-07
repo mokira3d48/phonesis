@@ -7,7 +7,6 @@ from argparse import ArgumentParser
 
 from phonesis.train import Trainer
 from phonesis.impl import Parser, Tokenizer
-from phonesis.constants import DEFAULT_CONS, DEFAULT_VOWS
 
 logging.config.fileConfig('logging.conf')
 logger = logging.getLogger('phonesis')
@@ -35,7 +34,7 @@ def read_text_file(file_path):
     size_read = 0
     print("INFO: file size:", file_size)
     with open(file_path, mode='r', encoding='utf-8') as file:
-        while (line := file.readline()):
+        while line := file.readline():
             size_read += len(line)
             line_split = line.split()
             print(f"{100 * (size_read / file_size):5.2f}", f"line: {line}")
@@ -99,14 +98,21 @@ def train():
 
 
 def inference():
-    argv = sys.argv[1:]
-    if len(argv) <= 0:
+    parser = ArgumentParser(prog="Phonesis inference")
+    parser.add_argument(
+        '-m', '--model', type=str,
+        help="The path to file where the phonesis tokens are stored."
+    )
+    args = parser.parse_args()
+    model_fp = args.model
+
+    if not model_fp:
         print("ERRO: No model file provided.")
         print("INFO: Please, provide model json file. "
               "separated in consonants, vowels and vocab.")
         print("INFO: Eg: {\"consonants\":[..], \"vowels\":[], \"vocab\":[]}")
-        sys.exit(0)
-    model_fp = argv[0]
+        exit(0)
+
     model = Tokenizer()
     model.load(model_fp)
     model.raises_except = True
