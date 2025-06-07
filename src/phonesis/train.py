@@ -1,5 +1,8 @@
+import logging
 from .impl import Parser, Tokenizer, preprocess
 from .utils.pgit import PBM, ProgressBar
+
+logger = logging.getLogger(__name__)
 
 
 class Trainer:
@@ -25,16 +28,17 @@ class Trainer:
         self.parse = Parser(consonants, vowels)
         self._model = None
 
-        self.pbm = PBM()
-        self.pbar = ProgressBar()
-        self.pbar.bins = 100
-        self.pbar.name = "progressbar"
-        self.pbar.bchr = '='
-        self.pbar.pchr = '>'
-        self.pbar.empt = '.'
-        self.pbar.lchr = '['
-        self.pbar.rchr = ']'
-        self.pbm.append(self.pbar)
+        # self.pbm = PBM()
+        # self.pbar = ProgressBar()
+        # self.pbar.bins = 100
+        # self.pbar.name = "progressbar"
+        # self.pbar.bchr = '='
+        # self.pbar.pchr = '>'
+        # self.pbar.empt = '.'
+        # self.pbar.lchr = '['
+        # self.pbar.rchr = ']'
+        # self.pbm.append(self.pbar)
+        # self.pbar.length = len(self.dataset)
 
     def get_model(self):
         if not self._model:
@@ -42,11 +46,10 @@ class Trainer:
         return self._model
 
     def run(self):
-        can_sort = not self.vocab
+        new_tokens = []
         for sample in self.dataset:
             words = preprocess(sample, self.consonants, self.vowels)
 
-            self.pbar.length = len(words)
             for word in words:
                 if not word:
                     continue
@@ -54,15 +57,17 @@ class Trainer:
                 for token in tokens:
                     if token in self.vocab:
                         continue
-                    self.vocab.append(token)
-                self.pbar.step(1)
+                    if token in new_tokens:
+                        continue
+                    new_tokens.append(token)
+                # self.pbar.step(1)
 
-        if can_sort:
-            self.vocab.sort()
+        new_tokens.sort()
+        self.vocab.extend(new_tokens)
 
-        vocab_size = len(self.vocab)
-        self.pbm.resume(
+        vocab_size = len(new_tokens)
+        logger.info(
             f"Training process is done in " + "{progressbar_duration}."
-            f"{vocab_size} tokens are found."
+            f" {vocab_size} tokens are found."
         )
         return vocab_size

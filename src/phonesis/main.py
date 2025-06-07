@@ -69,7 +69,7 @@ def train():
     """
     parser = ArgumentParser(prog="Phonesis model training")
     parser.add_argument(
-        "--alphabet", type=str,
+        '-a', "--alphabet", type=str,
         help="Provide a JSON file that provides the alphabet"
     )
     parser.add_argument(
