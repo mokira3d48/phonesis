@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "phonesis"
 version = "0.1.0"
-description = "Multilingual tokenization algorithm using the pronunciation phonemes of words. It adjusts its tokenization codex directly from words in the language dictionary, rather than from large text corpora."
+description = "Multilingual tokenization algorithm using the pronunciation phonemes of words. It adjusts its tokenization codex directly from words in the language dictionary, rather than from large text."
 readme = "README.md"
 authors = [
     { name = "Doctor Mokira", email = "dr.mokira@gmail.com" },

@@ -14,7 +14,7 @@
 
 Multilingual tokenization algorithm using the pronunciation phonemes of words.
 It adjusts its tokenization codex directly from words in the language dictionary,
-rather than from large text corpora. This technique reduces compute cost
+rather than from large text. This technique reduces compute cost
 and memory usage. It also offers the ability to continually update its codex
 to support other languages.
 
