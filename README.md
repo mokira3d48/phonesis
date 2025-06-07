@@ -126,7 +126,7 @@ Traceback (most recent call last):
 ValueError: 'lear' is not in list
 ```
 
-Some english is not supported with french codex of phonesis.
+Some english words are not supported with french codex of phonesis.
 So we will try with english codex.
 
 - Test command line for english codex:
