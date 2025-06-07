@@ -62,7 +62,7 @@ class Trainer:
 
         vocab_size = len(self.vocab)
         self.pbm.resume(
-            f"Training process is done in " + "{progressbar.duration}."
+            f"Training process is done in " + "{progressbar_duration}."
             f"{vocab_size} tokens are found."
         )
         return vocab_size

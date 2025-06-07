@@ -118,15 +118,24 @@ class Parser:
 
 
 class Tokenizer:
+    """
+    Tokenizer model
 
+    :arg vocab: The list of tokens built with the training process
+    :arg consonants: The list of consonants used to build the words
+      of the language
+    :arg vowels: The list of vowels used to build the words of the language
+
+    :type vocab: typing.List[str]
+    :type consonants: typing.List[str]
+    :type vowels: typing.List[str]
+    """
     def __init__(
-        self, vocab=None, consonants=DEFAULT_CONS, vowels=DEFAULT_VOWS,
-        verbose=False
+        self, vocab=None, consonants=DEFAULT_CONS, vowels=DEFAULT_VOWS
     ):
         self.vocab = vocab
         self.consonants = consonants
         self.vowels = vowels
-        self.verbose = verbose
 
         self.parse = Parser(consonants, vowels)
         self._file_handler = None
