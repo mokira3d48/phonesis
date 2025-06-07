@@ -15,7 +15,7 @@ class Trainer:
     :arg vowels: The list of vowels used to build the words of the language
     :arg vocab: The set of existing token
 
-    :type dataset: typing.Iterable
+    :type dataset: typing.Iterable[str]|typing.Generator[str]
     :type consonants: `list` of `str`
     :type vowels: `list` of `str`
     :type vocab: `list` of `str`
