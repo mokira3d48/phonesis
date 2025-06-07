@@ -17,6 +17,7 @@ It adjusts its tokenization codex directly from words in the language dictionary
 rather than from large text corpora. This technique reduces compute cost
 and memory usage. It also offers the ability to continually update its codex
 to support other languages.
+
 <!--
 #### Table of Contents
 - [Installation](#installation)
