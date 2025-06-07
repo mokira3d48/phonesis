@@ -20,25 +20,6 @@ def run_letter_parser():
     print(tokens)
 
 
-def run_eg():
-    """Main function
-    """
-    text = """
-    Each Machine Learning Crash Course module is self-contained,
-    so if you have prior experience in machine learning, you can skip directly
-    to the topics you want to learn. If you're new to machine learning,
-    we recommend completing modules in the order below.
-    """
-    print(text)
-    trainer = Trainer([text], DEFAULT_CONS, DEFAULT_VOWS)
-    trainer.run()
-    model = trainer.get_model()
-    model.save('sybok_model.json')
-    model.load('sybok_model.json')
-    print("vocab:", model.vocab)
-    print(model([text]))
-
-
 def retrieve_alphabet(file_path):
     with open(file_path, mode='r', encoding='utf-8') as file:
         data = json.load(file)
